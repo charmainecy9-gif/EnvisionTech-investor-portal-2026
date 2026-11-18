@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnvisionTech — Investor Portal</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy-deep:  #050D1A;
+    --navy-mid:   #0A1628;
+    --navy-card:  #0D1E35;
+    --navy-card2: #112540;
+    --navy-line:  #1A3050;
+    --blue:       #4A8FE0;
+    --blue-dim:   rgba(74,143,224,0.15);
+    --blue-line:  rgba(74,143,224,0.35);
+    --blue-glow:  rgba(74,143,224,0.08);
+    --text:       #E8EFF8;
+    --text-2:     #7A9ABE;
+    --text-3:     #3E5878;
+    --border:     rgba(255,255,255,0.06);
+    --border-2:   rgba(255,255,255,0.1);
+    --success:    #3DBFA0;
+    --radius:     8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy-deep);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* ── Top bar ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,13,26,0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--navy-line);
+    padding: 0 2.5rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 1rem; }
+  .logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 26px; height: 20px; }
+  .brand-name {
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+  }
+  .brand-name em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .brand-divider {
+    width: 1px; height: 18px;
+    background: var(--navy-line);
+  }
+  .portal-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-2);
+    letter-spacing: 0.5px;
+  }
+  .topbar-right { display: flex; align-items: center; }
+  .badge-confidential {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(74,143,224,0.1);
+    border: 1px solid var(--blue-line);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge-confidential::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: block;
+  }
+  /* ── Hero ── */
+  .hero {
+    padding: 5rem 2.5rem 4rem;
+    max-width: 980px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--navy-line);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--navy-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--navy-line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.3;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.6) 70%, transparent);
+  }
+  .hero-inner { position: relative; }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #ffffff;
+    font-weight: 300;
+  }
+  .hero-tagline {
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 300;
+    color: var(--text-2);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.1px;
+  }
+  .hero-tagline em { font-style: italic; color: var(--text); }
+  .hero-meta {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex-wrap: wrap;
+    border: 1px solid var(--navy-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 580px;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 1rem 1.25rem;
+    background: var(--navy-card);
+    flex: 1;
+    min-width: 140px;
+    border-right: 1px solid var(--navy-line);
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-3);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .meta-value {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  /* ── Main ── */
+  .main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem 6rem;
+  }
+  /* ── Section header ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--navy-line);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+  }
+  .section-count {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 400;
+  }
+  /* ── Year tabs ── */
+  .year-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .year-tab {
+    background: transparent;
+    border: 1px solid var(--navy-line);
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .year-tab:hover {
+    border-color: var(--blue-line);
+    color: var(--text);
+  }
+  .year-tab.active {
+    background: var(--blue-dim);
+    border-color: var(--blue-line);
+    color: var(--blue);
+  }
+  /* ── Report cards ── */
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+    gap: 1px;
+    background: var(--navy-line);
+    border: 1px solid var(--navy-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .report-card {
+    background: var(--navy-card);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    transition: background 0.15s ease;
+  }
+  .report-card:hover { background: var(--navy-card2); }
+  .report-card.locked {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .report-card.locked:hover { background: var(--navy-card); }
+  .report-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .report-icon {
+    width: 38px; height: 38px;
+    background: var(--navy-deep);
+    border: 1px solid var(--navy-line);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .report-icon svg { width: 17px; height: 17px; }
+  .report-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .report-tag.available {
+    background: rgba(61,191,160,0.12);
+    color: var(--success);
+    border: 1px solid rgba(61,191,160,0.25);
+  }
+  .report-tag.upcoming {
+    background: rgba(74,143,224,0.1);
+    color: var(--blue);
+    border: 1px solid var(--blue-line);
+  }
+  .report-quarter {
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .report-period {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .report-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .report-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--navy-line);
+  }
+  .report-date {
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue-dim);
+    border: 1px solid var(--blue-line);
+    border-radius: 4px;
+    padding: 7px 13px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.1px;
+  }
+  .btn-download:hover {
+    background: rgba(74,143,224,0.25);
+    border-color: rgba(74,143,224,0.55);
+  }
+  .btn-download svg { width: 13px; height: 13px; }
+  .btn-locked {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--navy-line);
+    border-radius: 4px;
+    padding: 7px 13px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-3);
+    cursor: default;
+  }
+  .btn-locked svg { width: 12px; height: 12px; }
+  /* ── Section gap ── */
+  .section-gap { margin-top: 4.5rem; }
+  /* ── Q&A card ── */
+  .qa-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .qa-card-header {
+    padding: 1.75rem 2rem 1.5rem;
+    border-bottom: 1px solid var(--navy-line);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .qa-icon {
+    width: 42px; height: 42px;
+    background: var(--blue-dim);
+    border: 1px solid var(--blue-line);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .qa-icon svg { width: 19px; height: 19px; }
+  .qa-header-text h2 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+  }
+  .qa-header-text p {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .qa-form-body {
+    padding: 1.75rem 2rem 2rem;
+  }
+background-image: url("data:image/svg+xml,%3Csvg xmlns='w3.org' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233E5878' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: right 13px center;
+padding-right: 34px;
+cursor: pointer;
+}
+.form-row select option { background: #0A1628; }
+.form-row textarea {
+resize: vertical;
+min-height: 110px;
+line-height: 1.65;
+}
+.form-grid-2 {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+.form-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding-top: 1.25rem;
+border-top: 1px solid var(--navy-line);
+margin-top: 0.25rem;
+flex-wrap: wrap;
+gap: 1rem;
+}
+.form-note {
+font-size: 12px;
+color: var(--text-3);
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.form-note svg { width: 13px; height: 13px; flex-shrink: 0; }
+.btn-submit {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(--blue);
+border: none;
+border-radius: 6px;
+padding: 10px 22px;
+font-family: 'Inter', sans-serif;
+font-size: 13.5px;
+font-weight: 500;
+color: #ffffff;
+cursor: pointer;
+transition: all 0.15s ease;
+}
+.btn-submit:hover { background: #5A9FEF; }
+.btn-submit:active { transform: scale(0.98); }
+.btn-submit svg { width: 14px; height: 14px; }
+/* ── Success ── /
+.qa-success {
+display: none;
+padding: 2.5rem 2rem;
+text-align: center;
+}
+.qa-success-icon {
+width: 50px; height: 50px;
+background: rgba(61,191,160,0.1);
+border: 1px solid rgba(61,191,160,0.3);
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem;
+}
+.qa-success-icon svg { width: 22px; height: 22px; }
+.qa-success h3 { font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 0.5rem; }
+.qa-success p { font-size: 13.5px; color: var(--text-2); }
+/ ── Financial statements section ── /
+.fin-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1rem;
+margin-bottom: 0.5rem;
+}
+.fin-card {
+background: var(--navy-card);
+border: 1px solid var(--navy-line);
+border-radius: var(--radius);
+padding: 1.25rem 1.4rem;
+display: flex;
+flex-direction: column;
+gap: 0.85rem;
+position: relative;
+transition: background 0.15s ease, border-color 0.15s ease;
+}
+.fin-card:hover {
+background: var(--navy-card2);
+border-color: var(--border-2);
+}
+.fin-card-empty {
+padding: 1.5rem;
+justify-content: center;
+align-items: center;
+min-height: 80px;
+}
+.fin-card-top {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.5rem;
+}
+.fin-type-badge {
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.6px;
+text-transform: uppercase;
+padding: 3px 9px;
+border-radius: 3px;
+}
+.fin-type-badge.annual {
+background: rgba(74,143,224,0.12);
+color: var(--blue);
+border: 1px solid var(--blue-line);
+}
+.fin-type-badge.semi {
+background: rgba(160,120,220,0.12);
+color: #A878DC;
+border: 1px solid rgba(160,120,220,0.3);
+}
+.fin-card-body { flex: 1; }
+.fin-title {
+font-size: 15px;
+font-weight: 500;
+color: #ffffff;
+margin-bottom: 3px;
+}
+.fin-entity {
+font-size: 12px;
+color: var(--blue);
+font-weight: 500;
+margin-bottom: 2px;
+}
+.fin-period {
+font-size: 11px;
+color: var(--text-3);
+letter-spacing: 0.2px;
+}
+.fin-card-footer {
+padding-top: 0.85rem;
+border-top: 1px solid var(--navy-line);
+}
+/ ── Taxable value section ── /
+.taxable-fund-label {
+font-size: 12px;
+font-weight: 500;
+color: var(--text-2);
+letter-spacing: 0.5px;
+text-transform: uppercase;
+margin-bottom: 0.75rem;
+}
+.taxable-table {
+border: 1px solid var(--navy-line);
+border-radius: var(--radius);
+overflow: hidden;
+margin-bottom: 0.25rem;
+}
+.taxable-row {
+display: grid;
+grid-template-columns: 100px 1fr 160px;
+align-items: center;
+padding: 0.85rem 1.25rem;
+border-bottom: 1px solid var(--navy-line);
+background: var(--navy-card);
+gap: 1rem;
+}
+.taxable-row:last-child { border-bottom: none; }
+.taxable-row.header {
+background: var(--navy-mid);
+padding: 0.6rem 1.25rem;
+}
+.taxable-row.header span {
+font-size: 10px;
+font-weight: 500;
+color: var(--text-3);
+letter-spacing: 0.7px;
+text-transform: uppercase;
+}
+.taxable-row.empty-row {
+grid-template-columns: 1fr;
+padding: 1.25rem;
+}
+.taxable-year {
+font-size: 15px;
+font-weight: 500;
+color: var(--text);
+}
+.taxable-value {
+font-size: 15px;
+font-weight: 500;
+color: #ffffff;
+font-variant-numeric: tabular-nums;
+}
+.taxable-value.muted { color: var(--text-3); }
+.taxable-tag {
+font-size: 10px;
+font-weight: 500;
+padding: 3px 9px;
+border-radius: 3px;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+width: fit-content;
+}
+.taxable-tag.available {
+background: rgba(61,191,160,0.12);
+color: var(--success);
+border: 1px solid rgba(61,191,160,0.25);
+}
+.taxable-tag.upcoming {
+background: rgba(74,143,224,0.1);
+color: var(--blue);
+border: 1px solid var(--blue-line);
+}
+@media (max-width: 640px) {
+.taxable-row { grid-template-columns: 70px 1fr 130px; }
+}
+.footer-wrap {
+border-top: 1px solid var(--navy-line);
+}
+.footer {
+max-width: 980px;
+margin: 0 auto;
+padding: 2.5rem 2.5rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+.footer-left {
+display: flex; align-items: center; gap: 0.65rem;
+}
+.footer-brand {
+font-size: 16px;
+font-weight: 400;
+color: var(--text-2);
+}
+.footer-brand em { font-style: italic; font-weight: 300; }
+.footer-right {
+font-size: 12px;
+color: var(--text-3);
+text-align: right;
+line-height: 1.9;
+}
+.footer-right a { color: var(--text-3); text-decoration: none; }
+.footer-right a:hover { color: var(--text-2); }
+.no-reports {
+grid-column: 1/-1;
+text-align: center;
+padding: 3rem;
+color: var(--text-3);
+font-size: 13.5px;
+background: var(--navy-card);
+}
+@media (max-width: 640px) {
+.topbar { padding: 0 1.25rem; }
+.hero, .main { padding-left: 1.25rem; padding-right: 1.25rem; }
+.hero { padding-top: 3rem; }
+.form-grid-2 { grid-template-columns: 1fr; }
+.brand-divider, .portal-label { display: none; }
+.qa-card-header { flex-direction: column; }
+.footer { flex-direction: column; }
+.footer-right { text-align: left; }
+}
+/ ── Access gate ── */
+#access-gate {
+position: fixed;
+inset: 0;
+z-index: 9999;
+background: var(--navy-deep);
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+}
+#access-gate::before {
+content: '';
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(var(--navy-line) 1px, transparent 1px),
+linear-gradient(90deg, var(--navy-line) 1px, transparent 1px);
+background-size: 80px 80px;
+opacity: 0.25;
+pointer-events: none;
+}
+.gate-card {
+position: relative;
+background: var(--navy-card);
+border: 1px solid var(--navy-line);
+border-radius: 14px;
+padding: 2.75rem 2.5rem 2.5rem;
+width: 100%;
+max-width: 420px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0;
+}
+.gate-brand {
+display: inline-flex;
+align-items: center;
+gap: 0.65rem;
+margin-bottom: 1.75rem;
+}
+.gate-title {
+font-size: 22px;
+font-weight: 400;
+color: #ffffff;
+text-align: center;
+margin-bottom: 0.4rem;
+letter-spacing: -0.2px;
+width: 100%;
+}
+.gate-sub {
+font-size: 13.5px;
+color: var(--text-2);
+text-align: center;
+margin-bottom: 2rem;
+line-height: 1.6;
+width: 100%;
+}
+.gate-divider {
+width: 100%;
+height: 1px;
+background: var(--navy-line);
+margin-bottom: 2rem;
+}
+.gate-field-label {
+display: block;
+font-size: 11px;
+font-weight: 500;
+color: var(--text-2);
+letter-spacing: 0.6px;
+text-transform: uppercase;
+margin-bottom: 0.5rem;
+width: 100%;
+text-align: left;
+}
+.gate-input {
+width: 100%;
+background: var(--navy-mid);
+border: 1px solid var(--navy-line);
+border-radius: 6px;
+padding: 11px 14px;
+font-family: 'Inter', sans-serif;
+font-size: 14px;
+color: var(--text);
+outline: none;
+transition: border-color 0.15s ease;
+margin-bottom: 1.25rem;
+-webkit-appearance: none;
+}
+.gate-input::placeholder { color: var(--text-3); }
+.gate-input:focus { border-color: var(--blue-line); }
+.gate-input.error { border-color: #E05252; }
+.gate-error {
+display: none;
+width: 100%;
+font-size: 12.5px;
+color: #E05252;
+margin-top: -0.75rem;
+margin-bottom: 1rem;
+text-align: left;
+}
+.gate-btn {
+width: 100%;
+background: var(--blue);
+border: none;
+border-radius: 6px;
+padding: 12px;
+font-family: 'Inter', sans-serif;
+font-size: 14px;
+font-weight: 500;
+color: #ffffff;
+cursor: pointer;
+transition: background 0.15s ease;
+margin-bottom: 1.5rem;
+}
+.gate-btn:hover { background: #5A9FEF; }
+.gate-btn:active { transform: scale(0.99); }
+.gate-note {
+font-size: 11.5px;
+color: var(--text-3);
+text-align: center;
+line-height: 1.7;
+}
+.gate-note a {
+color: var(--text-2);
+text-decoration: none;
+}
+.gate-note a:hover { color: var(--text); }
+body.portal-locked {
+overflow: hidden;
+}
+
+
+EnvisionTech
+
+Investor Portal
+Enter your email address to access
+the EnvisionTech investor portal.
+Email address
+Password
+This email address is not on the authorised investor list.
+
+Contact charmaine@envisiontech.no for access.
+
+Access portal
+
+Access is restricted to authorised investors only.
+
+Questions? charmaine@envisiontech.no
+
+
+EnvisionTech
+
+
+Investor Portal
+
+
+Confidential
+
+Authorised Investor Access
+Shaping Tomorrow's
+Energy System. Today.
+
+Quarterly Reports
+
+
+
+All funds
+Fund I
+SPV
+
+
+All years
+2026
+2025
+2024
+
+Financial Statements
+Annual & semi-annual accounts
+Fund I — NRP Green Transition I AS
+Semi-Annual
+Available
+
+
+Semi-Annual Accounts 2026
+Fund I
+01.01 – 30.06.2026
+
+
+
+
+Open in SharePoint
+
+
+Annual
+Available
+
+
+Financial Statements 2025
+Fund I
+01.01 – 31.12.2025 · Signed
+
+
+
+
+Open in SharePoint
+
+
+Semi-Annual
+Available
+
+
+Semi-Annual Accounts 2025
+Fund I
+01.01 – 30.06.2025 · Unaudited
+
+
+
+
+Open in SharePoint
+
+
+Annual
+Available
+
+
+Financial Statements 2024
+Fund I
+01.01 – 31.12.2024 · Executed
+
+
+
+
+Open in SharePoint
+
+
+
+
+Envision SPV I AS — SPV
+
+Financial statements will appear here once published.
+
+Taxable Value Per Share
+Annual figures · NOK
+NRP Green Transition I AS — Fund I
+
+
+Year
+Value per share
+Status
+
+
+2026
+—
+Not yet available
+
+
+2025
+NOK 127.466
+Published
+
+
+2024
+NOK 129.295
+Published
+
+
+2023
+NOK 97.7947
+Published
+
+
+Envision SPV I AS — SPV
+
+
+Year
+Value per share
+Status
+
+
+2026
+—
+Not yet available
+
+
+Historical values will appear here once published.
+
+
+Investor Q&A
+
+
+
+
+
+
+
+
+
+Send a question
+Your enquiry goes directly to Charmaine Lee and the investor relations team. We aim to respond within two business days.
+
+
+
+
+
+Full name
+Email address
+Topic
+Financial performance
+Portfolio update
+Strategic direction
+Fund terms
+Specific quarterly report
+Other
+
+
+Your question
+Sent directly to charmaine@envisiontech.no
+
+
+
+Send question
