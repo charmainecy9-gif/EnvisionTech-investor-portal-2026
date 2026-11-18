@@ -35,7 +35,6 @@
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
-  /* ── Top bar ── */
   .topbar {
     position: sticky;
     top: 0;
@@ -51,33 +50,21 @@
     justify-content: space-between;
     gap: 1rem;
   }
-  .topbar-left { display: flex; align-items: center; gap: 1rem; }
+  .topbar-left { display: flex; align-items: center; gap: 0.85rem; }
   .logo-mark {
-    width: 34px; height: 34px;
+    width: 32px; height: 32px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .logo-mark svg { width: 26px; height: 20px; }
   .brand-name {
     font-size: 18px;
     font-weight: 400;
     color: #ffffff;
     letter-spacing: -0.2px;
   }
-  .brand-name em {
-    font-style: italic;
-    font-weight: 400;
-  }
-  .brand-divider {
-    width: 1px; height: 18px;
-    background: var(--navy-line);
-  }
-  .portal-label {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--text-2);
-    letter-spacing: 0.5px;
-  }
+  .brand-name em { font-style: italic; font-weight: 400; }
+  .brand-divider { width: 1px; height: 18px; background: var(--navy-line); }
+  .portal-label { font-size: 12px; font-weight: 400; color: var(--text-2); letter-spacing: 0.5px; }
   .topbar-right { display: flex; align-items: center; }
   .badge-confidential {
     display: inline-flex;
@@ -100,7 +87,6 @@
     border-radius: 50%;
     display: block;
   }
-  /* ── Hero ── */
   .hero {
     padding: 5rem 2.5rem 4rem;
     max-width: 980px;
@@ -137,59 +123,8 @@
     margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
   }
-  .hero h1 em {
-    font-style: italic;
-    color: #ffffff;
-    font-weight: 300;
-  }
-  .hero-tagline {
-    font-size: clamp(15px, 1.8vw, 18px);
-    font-weight: 300;
-    color: var(--text-2);
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.1px;
-  }
-  .hero-tagline em { font-style: italic; color: var(--text); }
-  .hero-meta {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    flex-wrap: wrap;
-    border: 1px solid var(--navy-line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    max-width: 580px;
-  }
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 1rem 1.25rem;
-    background: var(--navy-card);
-    flex: 1;
-    min-width: 140px;
-    border-right: 1px solid var(--navy-line);
-  }
-  .meta-item:last-child { border-right: none; }
-  .meta-label {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--text-3);
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-  }
-  .meta-value {
-    font-size: 13.5px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  /* ── Main ── */
-  .main {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 3.5rem 2.5rem 6rem;
-  }
-  /* ── Section header ── */
+  .hero h1 em { font-style: italic; color: #ffffff; font-weight: 300; }
+  .main { max-width: 980px; margin: 0 auto; padding: 3.5rem 2.5rem 6rem; }
   .section-header {
     display: flex;
     align-items: baseline;
@@ -200,24 +135,9 @@
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  .section-title {
-    font-size: 24px;
-    font-weight: 400;
-    color: #ffffff;
-    letter-spacing: -0.2px;
-  }
-  .section-count {
-    font-size: 12px;
-    color: var(--text-3);
-    font-weight: 400;
-  }
-  /* ── Year tabs ── */
-  .year-tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 1.75rem;
-    flex-wrap: wrap;
-  }
+  .section-title { font-size: 24px; font-weight: 400; color: #ffffff; letter-spacing: -0.2px; }
+  .section-count { font-size: 12px; color: var(--text-3); font-weight: 400; }
+  .year-tabs { display: flex; gap: 6px; margin-bottom: 1.75rem; flex-wrap: wrap; }
   .year-tab {
     background: transparent;
     border: 1px solid var(--navy-line);
@@ -230,16 +150,8 @@
     cursor: pointer;
     transition: all 0.15s ease;
   }
-  .year-tab:hover {
-    border-color: var(--blue-line);
-    color: var(--text);
-  }
-  .year-tab.active {
-    background: var(--blue-dim);
-    border-color: var(--blue-line);
-    color: var(--blue);
-  }
-  /* ── Report cards ── */
+  .year-tab:hover { border-color: var(--blue-line); color: var(--text); }
+  .year-tab.active { background: var(--blue-dim); border-color: var(--blue-line); color: var(--blue); }
   .reports-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
@@ -259,17 +171,9 @@
     transition: background 0.15s ease;
   }
   .report-card:hover { background: var(--navy-card2); }
-  .report-card.locked {
-    opacity: 0.5;
-    cursor: default;
-  }
+  .report-card.locked { opacity: 0.5; cursor: default; }
   .report-card.locked:hover { background: var(--navy-card); }
-  .report-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
+  .report-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
   .report-icon {
     width: 38px; height: 38px;
     background: var(--navy-deep);
@@ -297,26 +201,9 @@
     color: var(--blue);
     border: 1px solid var(--blue-line);
   }
-  .report-quarter {
-    font-size: 20px;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.2;
-    margin-bottom: 2px;
-  }
-  .report-period {
-    font-size: 11px;
-    color: var(--text-3);
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-  .report-desc {
-    font-size: 13px;
-    color: var(--text-2);
-    line-height: 1.65;
-    flex: 1;
-  }
+  .report-quarter { font-size: 20px; font-weight: 400; color: #ffffff; line-height: 1.2; margin-bottom: 2px; }
+  .report-period { font-size: 11px; color: var(--text-3); font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase; }
+  .report-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; flex: 1; }
   .report-footer {
     display: flex;
     align-items: center;
@@ -324,10 +211,7 @@
     padding-top: 1rem;
     border-top: 1px solid var(--navy-line);
   }
-  .report-date {
-    font-size: 11px;
-    color: var(--text-3);
-  }
+  .report-date { font-size: 11px; color: var(--text-3); }
   .btn-download {
     display: inline-flex;
     align-items: center;
@@ -345,10 +229,7 @@
     transition: all 0.15s ease;
     letter-spacing: 0.1px;
   }
-  .btn-download:hover {
-    background: rgba(74,143,224,0.25);
-    border-color: rgba(74,143,224,0.55);
-  }
+  .btn-download:hover { background: rgba(74,143,224,0.25); border-color: rgba(74,143,224,0.55); }
   .btn-download svg { width: 13px; height: 13px; }
   .btn-locked {
     display: inline-flex;
@@ -363,15 +244,8 @@
     cursor: default;
   }
   .btn-locked svg { width: 12px; height: 12px; }
-  /* ── Section gap ── */
   .section-gap { margin-top: 4.5rem; }
-  /* ── Q&A card ── */
-  .qa-card {
-    background: var(--navy-card);
-    border: 1px solid var(--navy-line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  .qa-card { background: var(--navy-card); border: 1px solid var(--navy-line); border-radius: var(--radius); overflow: hidden; }
   .qa-card-header {
     padding: 1.75rem 2rem 1.5rem;
     border-bottom: 1px solid var(--navy-line);
@@ -388,39 +262,47 @@
     flex-shrink: 0;
   }
   .qa-icon svg { width: 19px; height: 19px; }
-  .qa-header-text h2 {
-    font-size: 20px;
-    font-weight: 400;
-    color: #ffffff;
-    margin-bottom: 0.3rem;
-  }
-  .qa-header-text p {
-    font-size: 13.5px;
+  .qa-header-text h2 { font-size: 20px; font-weight: 400; color: #ffffff; margin-bottom: 0.3rem; }
+  .qa-header-text p { font-size: 13.5px; color: var(--text-2); line-height: 1.6; }
+  .qa-form-body { padding: 1.75rem 2rem 2rem; }
+  .form-row { margin-bottom: 1.25rem; }
+  .form-row label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--text-2);
-    line-height: 1.6;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
   }
-  .qa-form-body {
-    padding: 1.75rem 2rem 2rem;
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-line);
+    border-radius: 6px;
+    padding: 10px 13px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
   }
-background-image: url("data:image/svg+xml,%3Csvg xmlns='w3.org' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233E5878' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-background-repeat: no-repeat;
-background-position: right 13px center;
-padding-right: 34px;
-cursor: pointer;
-}
-.form-row select option { background: #0A1628; }
-.form-row textarea {
-resize: vertical;
-min-height: 110px;
-line-height: 1.65;
-}
-.form-grid-2 {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1rem;
-}
-.form-footer {
-display: flex;
+  .form-row input::placeholder, .form-row textarea::placeholder { color: var(--text-3); }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--blue-line); }
+  .form-row select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233E5878' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 34px;
+    cursor: pointer;
+  }
+  .form-row select option { background: #0A1628; }
+  .form-row textarea { resize: vertical; min-height: 110px; line-height: 1.65; }
+  .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-footer {
+    display: flex;
 align-items: center;
 justify-content: space-between;
 padding-top: 1.25rem;
@@ -429,13 +311,7 @@ margin-top: 0.25rem;
 flex-wrap: wrap;
 gap: 1rem;
 }
-.form-note {
-font-size: 12px;
-color: var(--text-3);
-display: flex;
-align-items: center;
-gap: 6px;
-}
+.form-note { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
 .form-note svg { width: 13px; height: 13px; flex-shrink: 0; }
 .btn-submit {
 display: inline-flex;
@@ -455,12 +331,7 @@ transition: all 0.15s ease;
 .btn-submit:hover { background: #5A9FEF; }
 .btn-submit:active { transform: scale(0.98); }
 .btn-submit svg { width: 14px; height: 14px; }
-/* ── Success ── /
-.qa-success {
-display: none;
-padding: 2.5rem 2rem;
-text-align: center;
-}
+.qa-success { display: none; padding: 2.5rem 2rem; text-align: center; }
 .qa-success-icon {
 width: 50px; height: 50px;
 background: rgba(61,191,160,0.1);
@@ -472,13 +343,7 @@ margin: 0 auto 1rem;
 .qa-success-icon svg { width: 22px; height: 22px; }
 .qa-success h3 { font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 0.5rem; }
 .qa-success p { font-size: 13.5px; color: var(--text-2); }
-/ ── Financial statements section ── /
-.fin-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-gap: 1rem;
-margin-bottom: 0.5rem;
-}
+.fin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 0.5rem; }
 .fin-card {
 background: var(--navy-card);
 border: 1px solid var(--navy-line);
@@ -490,77 +355,19 @@ gap: 0.85rem;
 position: relative;
 transition: background 0.15s ease, border-color 0.15s ease;
 }
-.fin-card:hover {
-background: var(--navy-card2);
-border-color: var(--border-2);
-}
-.fin-card-empty {
-padding: 1.5rem;
-justify-content: center;
-align-items: center;
-min-height: 80px;
-}
-.fin-card-top {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 0.5rem;
-}
-.fin-type-badge {
-font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.6px;
-text-transform: uppercase;
-padding: 3px 9px;
-border-radius: 3px;
-}
-.fin-type-badge.annual {
-background: rgba(74,143,224,0.12);
-color: var(--blue);
-border: 1px solid var(--blue-line);
-}
-.fin-type-badge.semi {
-background: rgba(160,120,220,0.12);
-color: #A878DC;
-border: 1px solid rgba(160,120,220,0.3);
-}
+.fin-card:hover { background: var(--navy-card2); border-color: var(--border-2); }
+.fin-card-empty { padding: 1.5rem; justify-content: center; align-items: center; min-height: 80px; }
+.fin-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.fin-type-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; }
+.fin-type-badge.annual { background: rgba(74,143,224,0.12); color: var(--blue); border: 1px solid var(--blue-line); }
+.fin-type-badge.semi { background: rgba(160,120,220,0.12); color: #A878DC; border: 1px solid rgba(160,120,220,0.3); }
 .fin-card-body { flex: 1; }
-.fin-title {
-font-size: 15px;
-font-weight: 500;
-color: #ffffff;
-margin-bottom: 3px;
-}
-.fin-entity {
-font-size: 12px;
-color: var(--blue);
-font-weight: 500;
-margin-bottom: 2px;
-}
-.fin-period {
-font-size: 11px;
-color: var(--text-3);
-letter-spacing: 0.2px;
-}
-.fin-card-footer {
-padding-top: 0.85rem;
-border-top: 1px solid var(--navy-line);
-}
-/ ── Taxable value section ── /
-.taxable-fund-label {
-font-size: 12px;
-font-weight: 500;
-color: var(--text-2);
-letter-spacing: 0.5px;
-text-transform: uppercase;
-margin-bottom: 0.75rem;
-}
-.taxable-table {
-border: 1px solid var(--navy-line);
-border-radius: var(--radius);
-overflow: hidden;
-margin-bottom: 0.25rem;
-}
+.fin-title { font-size: 15px; font-weight: 500; color: #ffffff; margin-bottom: 3px; }
+.fin-entity { font-size: 12px; color: var(--blue); font-weight: 500; margin-bottom: 2px; }
+.fin-period { font-size: 11px; color: var(--text-3); letter-spacing: 0.2px; }
+.fin-card-footer { padding-top: 0.85rem; border-top: 1px solid var(--navy-line); }
+.taxable-fund-label { font-size: 12px; font-weight: 500; color: var(--text-2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; }
+.taxable-table { border: 1px solid var(--navy-line); border-radius: var(--radius); overflow: hidden; margin-bottom: 0.25rem; }
 .taxable-row {
 display: grid;
 grid-template-columns: 100px 1fr 160px;
@@ -571,32 +378,11 @@ background: var(--navy-card);
 gap: 1rem;
 }
 .taxable-row:last-child { border-bottom: none; }
-.taxable-row.header {
-background: var(--navy-mid);
-padding: 0.6rem 1.25rem;
-}
-.taxable-row.header span {
-font-size: 10px;
-font-weight: 500;
-color: var(--text-3);
-letter-spacing: 0.7px;
-text-transform: uppercase;
-}
-.taxable-row.empty-row {
-grid-template-columns: 1fr;
-padding: 1.25rem;
-}
-.taxable-year {
-font-size: 15px;
-font-weight: 500;
-color: var(--text);
-}
-.taxable-value {
-font-size: 15px;
-font-weight: 500;
-color: #ffffff;
-font-variant-numeric: tabular-nums;
-}
+.taxable-row.header { background: var(--navy-mid); padding: 0.6rem 1.25rem; }
+.taxable-row.header span { font-size: 10px; font-weight: 500; color: var(--text-3); letter-spacing: 0.7px; text-transform: uppercase; }
+.taxable-row.empty-row { grid-template-columns: 1fr; padding: 1.25rem; }
+.taxable-year { font-size: 15px; font-weight: 500; color: var(--text); }
+.taxable-value { font-size: 15px; font-weight: 500; color: #ffffff; font-variant-numeric: tabular-nums; }
 .taxable-value.muted { color: var(--text-3); }
 .taxable-tag {
 font-size: 10px;
@@ -607,22 +393,9 @@ letter-spacing: 0.5px;
 text-transform: uppercase;
 width: fit-content;
 }
-.taxable-tag.available {
-background: rgba(61,191,160,0.12);
-color: var(--success);
-border: 1px solid rgba(61,191,160,0.25);
-}
-.taxable-tag.upcoming {
-background: rgba(74,143,224,0.1);
-color: var(--blue);
-border: 1px solid var(--blue-line);
-}
-@media (max-width: 640px) {
-.taxable-row { grid-template-columns: 70px 1fr 130px; }
-}
-.footer-wrap {
-border-top: 1px solid var(--navy-line);
-}
+.taxable-tag.available { background: rgba(61,191,160,0.12); color: var(--success); border: 1px solid rgba(61,191,160,0.25); }
+.taxable-tag.upcoming { background: rgba(74,143,224,0.1); color: var(--blue); border: 1px solid var(--blue-line); }
+.footer-wrap { border-top: 1px solid var(--navy-line); }
 .footer {
 max-width: 980px;
 margin: 0 auto;
@@ -633,31 +406,13 @@ justify-content: space-between;
 flex-wrap: wrap;
 gap: 1.5rem;
 }
-.footer-left {
-display: flex; align-items: center; gap: 0.65rem;
-}
-.footer-brand {
-font-size: 16px;
-font-weight: 400;
-color: var(--text-2);
-}
+.footer-left { display: flex; align-items: center; gap: 0.75rem; }
+.footer-brand { font-size: 16px; font-weight: 400; color: var(--text-2); }
 .footer-brand em { font-style: italic; font-weight: 300; }
-.footer-right {
-font-size: 12px;
-color: var(--text-3);
-text-align: right;
-line-height: 1.9;
-}
+.footer-right { font-size: 12px; color: var(--text-3); text-align: right; line-height: 1.9; }
 .footer-right a { color: var(--text-3); text-decoration: none; }
 .footer-right a:hover { color: var(--text-2); }
-.no-reports {
-grid-column: 1/-1;
-text-align: center;
-padding: 3rem;
-color: var(--text-3);
-font-size: 13.5px;
-background: var(--navy-card);
-}
+.no-reports { grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-3); font-size: 13.5px; background: var(--navy-card); }
 @media (max-width: 640px) {
 .topbar { padding: 0 1.25rem; }
 .hero, .main { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -667,8 +422,8 @@ background: var(--navy-card);
 .qa-card-header { flex-direction: column; }
 .footer { flex-direction: column; }
 .footer-right { text-align: left; }
+.taxable-row { grid-template-columns: 70px 1fr 130px; }
 }
-/ ── Access gate ── */
 #access-gate {
 position: fixed;
 inset: 0;
@@ -701,37 +456,20 @@ max-width: 420px;
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 0;
 }
 .gate-brand {
-display: inline-flex;
+display: flex;
 align-items: center;
 gap: 0.65rem;
 margin-bottom: 1.75rem;
-}
-.gate-title {
-font-size: 22px;
-font-weight: 400;
 color: #ffffff;
-text-align: center;
-margin-bottom: 0.4rem;
-letter-spacing: -0.2px;
-width: 100%;
+font-size: 20px;
+font-weight: 400;
 }
-.gate-sub {
-font-size: 13.5px;
-color: var(--text-2);
-text-align: center;
-margin-bottom: 2rem;
-line-height: 1.6;
-width: 100%;
-}
-.gate-divider {
-width: 100%;
-height: 1px;
-background: var(--navy-line);
-margin-bottom: 2rem;
-}
+.gate-brand em { font-style: italic; }
+.gate-title { font-size: 22px; font-weight: 400; color: #ffffff; text-align: center; margin-bottom: 0.4rem; letter-spacing: -0.2px; width: 100%; }
+.gate-sub { font-size: 13.5px; color: var(--text-2); text-align: center; margin-bottom: 2rem; line-height: 1.6; width: 100%; }
+.gate-divider { width: 100%; height: 1px; background: var(--navy-line); margin-bottom: 2rem; }
 .gate-field-label {
 display: block;
 font-size: 11px;
@@ -760,15 +498,7 @@ margin-bottom: 1.25rem;
 .gate-input::placeholder { color: var(--text-3); }
 .gate-input:focus { border-color: var(--blue-line); }
 .gate-input.error { border-color: #E05252; }
-.gate-error {
-display: none;
-width: 100%;
-font-size: 12.5px;
-color: #E05252;
-margin-top: -0.75rem;
-margin-bottom: 1rem;
-text-align: left;
-}
+.gate-error { display: none; width: 100%; font-size: 12.5px; color: #E05252; margin-top: -0.75rem; margin-bottom: 1rem; text-align: left; }
 .gate-btn {
 width: 100%;
 background: var(--blue);
@@ -785,20 +515,10 @@ margin-bottom: 1.5rem;
 }
 .gate-btn:hover { background: #5A9FEF; }
 .gate-btn:active { transform: scale(0.99); }
-.gate-note {
-font-size: 11.5px;
-color: var(--text-3);
-text-align: center;
-line-height: 1.7;
-}
-.gate-note a {
-color: var(--text-2);
-text-decoration: none;
-}
+.gate-note { font-size: 11.5px; color: var(--text-3); text-align: center; line-height: 1.7; }
+.gate-note a { color: var(--text-2); text-decoration: none; }
 .gate-note a:hover { color: var(--text); }
-body.portal-locked {
-overflow: hidden;
-}
+body.portal-locked { overflow: hidden; }
 
 
 EnvisionTech
@@ -820,7 +540,6 @@ Questions? charmaine@envisiontech.no
 
 
 EnvisionTech
-
 
 Investor Portal
 
@@ -847,7 +566,12 @@ All years
 
 Financial Statements
 Annual & semi-annual accounts
+
+
 Fund I — NRP Green Transition I AS
+
+
+
 Semi-Annual
 Available
 
@@ -860,6 +584,9 @@ Fund I
 
 
 Open in SharePoint
+
+
+
 
 
 Annual
@@ -876,6 +603,9 @@ Fund I
 Open in SharePoint
 
 
+
+
+
 Semi-Annual
 Available
 
@@ -888,6 +618,9 @@ Fund I
 
 
 Open in SharePoint
+
+
+
 
 
 Annual
@@ -906,12 +639,16 @@ Open in SharePoint
 
 
 
+
+
 Envision SPV I AS — SPV
 
 Financial statements will appear here once published.
 
 Taxable Value Per Share
 Annual figures · NOK
+
+
 NRP Green Transition I AS — Fund I
 
 
@@ -938,6 +675,8 @@ Published
 2023
 NOK 97.7947
 Published
+
+
 
 
 Envision SPV I AS — SPV
@@ -990,3 +729,151 @@ Sent directly to charmaine@envisiontech.no
 
 
 Send question
+
+
+
+
+
+
+
+
+Question submitted
+Your message has been forwarded to the investor relations team.
+You'll receive a reply at the email address you provided.
+
+
+EnvisionTech
+
+
+Haakon VIIs gate 1, 0161 Oslo, Norway  ·  envision.tech
+
+Investor relations: charmaine@envisiontech.no
+
+©  EnvisionTech AS  ·  For authorised investors only
+
+
+const SP_FUNDI = 'sharepoint.com';
+const SP_SPV   = 'sharepoint.com';
+const reports = [
+{ fund: 'fundI', year: '2026', quarter: 'Q3 2026', label: 'Jul – Sep 2026', description: 'Third quarter results covering portfolio performance, active ownership activities, and pipeline developments.', date: 'Published Nov 2026', available: true, file: SP_FUNDI },
+{ fund: 'spv',   year: '2026', quarter: 'Q3 2026', label: 'Jul – Sep 2026', description: 'Third quarter results covering SPV portfolio performance and updates.', date: 'Published Nov 2026', available: true, file: SP_SPV },
+{ fund: 'spv',   year: '2026', quarter: 'Q2 2026', label: 'Apr – Jun 2026', description: 'Second quarter results covering SPV portfolio performance, operational milestones, and pipeline developments.', date: 'Published Aug 2026', available: true, file: SP_SPV },
+{ fund: 'fundI', year: '2026', quarter: 'Q2 2026', label: 'Apr – Jun 2026', description: 'Second quarter results covering portfolio performance, operational milestones, and pipeline developments across all three themes.', date: 'Published Aug 2026', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2026', quarter: 'Q1 2026', label: 'Jan – Mar 2026', description: 'First quarter update covering portfolio performance, new deal activity, and strategic outlook for 2026.', date: 'Published 15 May 2026', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2025', quarter: 'Q4 2025', label: 'Oct – Dec 2025', description: 'Full-year summary and fourth quarter results, including audited figures, exit pipeline updates, and board commentary.', date: 'Published 14 Feb 2026', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2025', quarter: 'Q3 2025', label: 'Jul – Sep 2025', description: 'Third quarter interim report covering portfolio growth metrics, active ownership activities, and new deal pipeline.', date: 'Published 12 Nov 2025', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2025', quarter: 'Q2 2025', label: 'Apr – Jun 2025', description: 'Second quarter results covering portfolio performance, operational milestones, and pipeline developments across all three themes.', date: 'Published 14 Aug 2025', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2025', quarter: 'Q1 2025', label: 'Jan – Mar 2025', description: 'First quarter update including financial highlights, portfolio company progress, and strategic priorities for the year ahead.', date: 'Published 15 May 2025', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2024', quarter: 'Q4 2024', label: 'Oct – Dec 2024', description: 'Full-year summary and fourth quarter results, including audited figures, exit pipeline updates, and board commentary.', date: 'Published 14 Feb 2025', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2024', quarter: 'Q3 2024', label: 'Jul – Sep 2024', description: 'Third quarter interim report covering portfolio growth metrics, active ownership activities, and new deal pipeline.', date: 'Published 12 Nov 2024', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2024', quarter: 'Q2 2024', label: 'Apr – Jun 2024', description: 'Mid-year performance review with revenue analysis, product rollout progress, and portfolio company highlights.', date: 'Published 14 Aug 2024', available: true, file: SP_FUNDI },
+{ fund: 'fundI', year: '2024', quarter: 'Q1 2024', label: 'Jan – Mar 2024', description: 'Opening quarter results, deal pipeline status, portfolio company introductions, and strategic outlook for 2024.', date: 'Published 15 May 2024', available: true, file: SP_FUNDI }
+];
+let currentYear = 'all';
+let currentFundFilter = 'all';
+let investorFunds = ['fundI', 'spv'];
+function initFundAccess(funds) {
+investorFunds = funds;
+const fundTabs = document.getElementById('fund-tabs');
+if (funds.length > 1) {
+fundTabs.style.display = 'flex';
+currentFundFilter = 'all';
+} else {
+fundTabs.style.display = 'none';
+currentFundFilter = funds[0];
+}
+document.getElementById('taxable-fundI').style.display    = funds.includes('fundI') ? 'block' : 'none';
+document.getElementById('taxable-spv').style.display      = funds.includes('spv')   ? 'block' : 'none';
+document.getElementById('financials-fundI').style.display = funds.includes('fundI') ? 'block' : 'none';
+document.getElementById('financials-spv').style.display   = funds.includes('spv')   ? 'block' : 'none';
+renderReports(currentYear);
+}
+function filterFund(fund, btn) {
+currentFundFilter = fund;
+document.querySelectorAll('#fund-tabs .year-tab').forEach(t => {
+t.classList.remove('active');
+t.setAttribute('aria-selected', 'false');
+});
+btn.classList.add('active');
+btn.setAttribute('aria-selected', 'true');
+renderReports(currentYear);
+}
+const FUND_LABELS = { fundI: 'Fund I', spv: 'SPV' };
+function renderReports(year) {
+currentYear = year;
+const grid = document.getElementById('reports-grid');
+let scoped = reports.filter(r => investorFunds.includes(r.fund));
+if (currentFundFilter !== 'all') {
+scoped = scoped.filter(r => r.fund === currentFundFilter);
+}
+const filtered = year === 'all' ? scoped : scoped.filter(r => r.year === year);
+const avail = filtered.filter(r => r.available).length;
+document.getElementById('report-section-count').textContent =
+avail + ' report' + (avail !== 1 ? 's' : '') + ' available';
+if (!filtered.length) {
+grid.innerHTML = 'No reports for this selection yet.';
+return;
+}
+grid.innerHTML = filtered.map(r => <article class="report-card ${r.available ? '' : 'locked'}" role="listitem"> <div class="report-card-top"> <div class="report-icon"> <svg viewBox="0 0 24 24" fill="none" stroke="${r.available ? '#4A8FE0' : '#3E5878'}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/> <polyline points="14 2 14 8 20 8"/> <line x1="16" y1="13" x2="8" y2="13"/> <line x1="16" y1="17" x2="8" y2="17"/> </svg> </div> <span class="report-tag ${r.available ? 'available' : 'upcoming'}"> ${r.available ? 'Available' : 'Upcoming'} </span> </div> <div> <p class="report-quarter">${r.quarter}${investorFunds.length > 1 ? · ${FUND_LABELS[r.fund]}: ''}</p> <p class="report-period">${r.label}</p> </div> <p class="report-desc">${r.description}</p> <div class="report-footer"> <span class="report-date">${r.date}</span> ${r.available ?
+
+Open in SharePoint
+:
+
+Not yet published
+} </div> </article> ).join('');
+}
+function filterYear(year, btn) {
+document.querySelectorAll('.year-tabs[aria-label="Filter by year"] .year-tab').forEach(t => {
+t.classList.remove('active');
+t.setAttribute('aria-selected', 'false');
+});
+btn.classList.add('active');
+btn.setAttribute('aria-selected', 'true');
+renderReports(year);
+}
+const FORMSPREE_ENDPOINT = 'formspree.io';
+document.getElementById('qa-form').addEventListener('submit', function(e) {
+e.preventDefault();
+const form    = e.target;
+const name    = document.getElementById('qa-name').value.trim();
+const email   = document.getElementById('qa-email').value.trim();
+const topic   = document.getElementById('qa-topic').value;
+const message = document.getElementById('qa-message').value.trim();
+const errEl   = document.getElementById('form-error');
+const btn     = document.getElementById('submit-btn');
+errEl.style.display = 'none';
+if (!name)                          { showErr('Please enter your name.'); return; }
+if (!email || !email.includes('@')) { showErr('Please enter a valid email address.'); return; }
+if (!message)                       { showErr('Please write your question before submitting.'); return; }
+function showErr(msg) { errEl.textContent = msg; errEl.style.display = 'block'; }
+document.getElementById('qa-subject-field').value = '[Investor Q&A] ' + topic + ' — ' + name;
+const originalBtnHTML = btn.innerHTML;
+btn.disabled = true;
+btn.style.opacity = '0.7';
+btn.innerHTML = 'Sending…';
+fetch(FORMSPREE_ENDPOINT, {
+method: 'POST',
+headers: { 'Accept': 'application/json' },
+body: new FormData(form)
+})
+.then(response => {
+if (response.ok) {
+document.getElementById('qa-form-wrap').style.display = 'none';
+document.getElementById('qa-success').style.display = 'block';
+} else {
+response.json().then(data => {
+const msg = (data && data.errors) ? data.errors.map(e => e.message).join(', ') : 'Something went wrong. Please try again or email charmaine@envisiontech.no directly.';
+showErr(msg);
+btn.disabled = false;
+btn.style.opacity = '1';
+btn.innerHTML = originalBtnHTML;
+});
+}
+})
+.catch(() => {
+showErr('Could not send your message. Please check your connection or email charmaine@envisiontech.no directly.');
+btn.disabled = false;
+btn.style.opacity = '1';
+btn.innerHTML = originalBtnHTML;
+});
+});
