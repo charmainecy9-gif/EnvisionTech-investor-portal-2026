@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta
+    name="description"
+    content="EnvisionTech investor document portal."
+  >
+
+  <title>EnvisionTech — Investor Portal</title>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      color-scheme: dark;
+      --navy-deep: #050D1A;
+      --navy-mid: #0A1628;
+      --navy-card: #0D1E35;
+      --navy-card2: #112540;
+      --navy-line: #1A3050;
+      --blue: #75AFF5;
+      --blue-dim: rgba(74, 143, 224, 0.15);
+      --blue-line: rgba(117, 175, 245, 0.4);
+      --text: #E8EFF8;
+      --text-2: #A2B9D4;
+      --text-3: #91A9C5;
+      --success: #67D6B8;
+      --error: #FFADAD;
+      --radius: 8px;
+
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--navy-deep);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    a {
+      color: var(--blue);
+      text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -100px;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      background: white;
+      color: #050D1A;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Shared-password entry screen. */
+
+    .entry-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 1.25rem;
+      background: var(--navy-deep);
+    }
+
+    .entry-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 2.5rem;
+      border: 1px solid var(--navy-line);
+      border-radius: 14px;
+      background: var(--navy-card);
+    }
+
+    .entry-brand {
+      margin-bottom: 1.75rem;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .entry-title {
+      margin-bottom: 0.75rem;
+      color: white;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .entry-description {
+      margin-bottom: 1.75rem;
+      color: var(--text-2);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .entry-submit {
+      width: 100%;
+    }
+
+    .entry-note {
+      margin-top: 1.25rem;
+      color: var(--text-3);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* Main portal. */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 64px;
+      padding: 0 2.5rem;
+      border-bottom: 1px solid var(--navy-line);
+      background: rgba(5, 13, 26, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      min-width: 0;
+    }
+
+    .brand-name {
+      color: white;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+
+    .brand-name em {
+      font-weight: 400;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--navy-line);
+    }
+
+    .portal-label {
+      color: var(--text-2);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge {
+      flex-shrink: 0;
+      padding: 4px 12px;
+      border: 1px solid var(--blue-line);
+      border-radius: 20px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .exit-button {
+      padding: 5px 10px;
+      border: 1px solid var(--navy-line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-2);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .exit-button:hover {
+      border-color: var(--blue-line);
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 4.5rem 2.5rem 3rem;
+      border-bottom: 1px solid var(--navy-line);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          var(--navy-line) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          var(--navy-line) 1px,
+          transparent 1px
+        );
+      background-size: 80px 80px;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+    }
+
+    .hero-title {
+      margin-bottom: 1rem;
+      color: white;
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title em {
+      font-weight: 300;
+    }
+
+    .hero-description {
+      max-width: 660px;
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 5rem;
+    }
+
+    .notice {
+      margin-bottom: 2rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--blue-line);
+      border-radius: var(--radius);
+      background: var(--blue-dim);
+      color: var(--text-2);
+      font-size: 13px;
+    }
+
+    .section-gap {
+      margin-top: 3.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--navy-line);
+    }
+
+    .section-title {
+      color: white;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+    }
+
+    .section-count {
+      color: var(--text-3);
+      font-size: 12px;
+    }
+
+    .filter-label {
+      margin-bottom: 0.6rem;
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .tab {
+      padding: 7px 16px;
+      border: 1px solid var(--navy-line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-2);
+      font-size: 13px;
+      cursor: pointer;
+      transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .tab:hover {
+      border-color: var(--blue-line);
+      color: var(--text);
+    }
+
+    .tab[aria-pressed="true"] {
+      border-color: var(--blue-line);
+      background: var(--blue-dim);
+      color: var(--blue);
+    }
+
+    .library-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .helper {
+      margin-bottom: 1.5rem;
+      color: var(--text-3);
+      font-size: 12px;
+    }
+
+    .reports-grid,
+    .fin-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+      gap: 1rem;
+    }
+
+    .report-card,
+    .fin-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 0;
+      padding: 1.5rem;
+      border: 1px solid var(--navy-line);
+      border-radius: var(--radius);
+      background: var(--navy-card);
+      transition: background 0.15s ease;
+    }
+
+    .report-card:hover,
+    .fin-card:hover {
+      background: var(--navy-card2);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      width: fit-content;
+      padding: 3px 9px;
+      border: 1px solid var(--blue-line);
+      border-radius: 3px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .report-quarter {
+      margin-bottom: 4px;
+      color: white;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .report-period {
+      color: var(--text-3);
+      font-size: 11px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .report-desc {
+      flex: 1;
+      color: var(--text-2);
+      font-size: 13px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--navy-line);
+    }
+
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 13px;
+      border: 1px solid var(--blue-line);
+      border-radius: 4px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .button-link:hover {
+      background: rgba(74, 143, 224, 0.25);
+    }
+
+    .fund-heading {
+      margin: 1.5rem 0 0.85rem;
+      color: var(--text-2);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .fin-title {
+      margin-bottom: 4px;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .fin-period {
+      color: var(--text-3);
+      font-size: 12px;
+    }
+
+    .empty-state {
+      padding: 1.5rem;
+      border: 1px solid var(--navy-line);
+      border-radius: var(--radius);
+      background: var(--navy-card);
+      color: var(--text-2);
+      font-size: 13px;
+    }
+
+    .qa-card {
+      overflow: hidden;
+      border: 1px solid var(--navy-line);
+      border-radius: var(--radius);
+      background: var(--navy-card);
+    }
+
+    .qa-header {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--navy-line);
+    }
+
+    .qa-header h3 {
+      margin-bottom: 0.5rem;
+      color: white;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .qa-header p {
+      color: var(--text-2);
+      font-size: 13px;
+    }
+
+    .qa-body {
+      padding: 1.75rem 2rem 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1px solid var(--navy-line);
+      border-radius: 6px;
+      background: var(--navy-mid);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-row input::placeholder,
+    .form-row textarea::placeholder {
+      color: var(--text-3);
+    }
+
+    .form-row textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--navy-line);
+    }
+
+    .form-note {
+      max-width: 470px;
+      color: var(--text-3);
+      font-size: 12px;
+    }
+
+    .submit-button {
+      padding: 11px 22px;
+      border: none;
+      border-radius: 6px;
+      background: #3678C7;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: #2865AC;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .form-error {
+      margin-bottom: 1rem;
+      color: var(--error);
+      font-size: 13px;
+    }
+
+    .qa-success {
+      padding: 2rem;
+      color: var(--success);
+    }
+
+    .qa-success h3 {
+      margin-bottom: 0.5rem;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .qa-success p {
+      color: var(--text-2);
+      font-size: 14px;
+    }
+
+    .contact-note {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .footer-wrap {
+      border-top: 1px solid var(--navy-line);
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    .footer-brand {
+      color: var(--text-2);
+      font-size: 16px;
+    }
+
+    .footer-details {
+      color: var(--text-3);
+      font-size: 12px;
+      text-align: right;
+      line-height: 1.9;
+    }
+
+    @media (max-width: 640px) {
+      .entry-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .topbar {
+        padding: 0 1.25rem;
+      }
+
+      .brand-divider,
+      .portal-label,
+      .badge {
+        display: none;
+      }
+
+      .hero {
+        padding: 3rem 1.25rem 2rem;
+      }
+
+      .main {
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .qa-header,
+      .qa-body {
+        padding: 1.25rem;
+      }
+
+      .footer {
+        padding: 2rem 1.25rem;
+      }
+
+      .footer-details {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section
+    id="entry-screen"
+    class="entry-screen"
+    aria-labelledby="entry-title"
+  >
+    <div class="entry-card">
+      <p class="entry-brand">Envision<em>Tech</em></p>
+
+      <h1 id="entry-title" class="entry-title">
+        Investor Portal
+      </h1>
+
+      <p class="entry-description">
+        Enter the portal password to continue.
+        Microsoft will separately verify your access
+        when you open investor documents.
+      </p>
+
+      <form id="entry-form">
+        <div class="form-row">
+          <label for="entry-password">Portal password</label>
+
+          <input
+            id="entry-password"
+            name="portal-password"
+            type="password"
+            autocomplete="current-password"
+            aria-describedby="entry-error"
+            required
+          >
+        </div>
+
+        <p
+          id="entry-error"
+          class="form-error"
+          role="alert"
+          hidden
+        ></p>
+
+        <button
+          class="submit-button entry-submit"
+          type="submit"
+        >
+          Access portal
+        </button>
+      </form>
+
+      <p class="entry-note">
+        Questions?
+        <a href="mailto:charmaine@envisiontech.no">
+          charmaine@envisiontech.no
+        </a>
+      </p>
+
+      <noscript>
+        <p class="entry-note">
+          JavaScript is required to use this entry screen.
+          Please enable JavaScript or contact investor relations.
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <div id="portal-content" hidden inert>
+    <a class="skip-link" href="#main-content">
+      Skip to content
+    </a>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="brand-name">Envision<em>Tech</em></span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="portal-label">Investor Portal</span>
+      </div>
+
+      <div class="topbar-right">
+        <span class="badge">Documents via SharePoint</span>
+
+        <button
+          id="exit-portal"
+          class="exit-button"
+          type="button"
+        >
+          Exit portal
+        </button>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <h2 id="hero-title" class="hero-title">
+          Shaping Tomorrow’s<br>
+          <em>Energy System. Today.</em>
+        </h2>
+
+        <p class="hero-description">
+          Access quarterly reports, financial statements,
+          and investor documents through our restricted
+          SharePoint libraries.
+        </p>
+      </div>
+    </section>
+
+    <main id="main-content" class="main" tabindex="-1">
+      <aside class="notice" aria-label="Document access information">
+        SharePoint verifies your identity and document permissions.
+        Sign in using the email address registered for your
+        investment. Depending on your account, Microsoft may
+        ask you to sign in or enter an emailed verification code.
+        Selecting a fund here does not grant access to its documents.
+      </aside>
+
+      <section aria-labelledby="fund-selection-title">
+        <h2 id="fund-selection-title" class="filter-label">
+          Choose a fund
+        </h2>
+
+        <div
+          id="fund-tabs"
+          class="tabs"
+          role="group"
+          aria-label="Filter by fund"
+        >
+          <button
+            type="button"
+            class="tab"
+            data-fund="all"
+            aria-pressed="true"
+          >
+            All funds
+          </button>
+
+          <button
+            type="button"
+            class="tab"
+            data-fund="fundI"
+            aria-pressed="false"
+          >
+            Fund I
+          </button>
+
+          <button
+            type="button"
+            class="tab"
+            data-fund="spv"
+            aria-pressed="false"
+          >
+            SPV
+          </button>
+        </div>
+
+        <div class="library-actions">
+          <a
+            class="button-link"
+            data-library="fundI"
+            data-fund-section="fundI"
+            href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Fund I documents ↗
+          </a>
+
+          <a
+            class="button-link"
+            data-library="spv"
+            data-fund-section="spv"
+            href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/SPV/Forms/AllItems.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open SPV documents ↗
+          </a>
+        </div>
+
+        <p class="helper">
+          SharePoint links open in a new tab.
+          Access is limited to authorised investors.
+        </p>
+      </section>
+
+      <section class="section-gap" aria-labelledby="quarterly-title">
+        <div class="section-header">
+          <h2 id="quarterly-title" class="section-title">
+            Quarterly Reports
+          </h2>
+
+          <p
+            id="report-section-count"
+            class="section-count"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+
+        <p class="filter-label">Filter by year</p>
+
+        <div
+          id="year-tabs"
+          class="tabs"
+          role="group"
+          aria-label="Filter by year"
+        >
+          <button
+            type="button"
+            class="tab"
+            data-year="all"
+            aria-pressed="true"
+          >
+            All years
+          </button>
+
+          <button
+            type="button"
+            class="tab"
+            data-year="2026"
+            aria-pressed="false"
+          >
+            2026
+          </button>
+
+          <button
+            type="button"
+            class="tab"
+            data-year="2025"
+            aria-pressed="false"
+          >
+            2025
+          </button>
+
+          <button
+            type="button"
+            class="tab"
+            data-year="2024"
+            aria-pressed="false"
+          >
+            2024
+          </button>
+        </div>
+
+        <p class="helper">
+          Each button opens that report in SharePoint.
+          Microsoft confirms your access before showing it.
+        </p>
+
+        <div id="reports-grid" class="reports-grid"></div>
+      </section>
+
+      <section class="section-gap" aria-labelledby="financials-title">
+        <div class="section-header">
+          <h2 id="financials-title" class="section-title">
+            Financial Statements
+          </h2>
+
+          <p class="section-count">
+            Annual &amp; semi-annual accounts
+          </p>
+        </div>
+
+        <div id="financials-fundI" data-fund-section="fundI">
+          <h3 class="fund-heading">
+            Fund I — NRP Green Transition I AS
+          </h3>
+
+          <div class="fin-grid">
+            <article class="fin-card">
+              <span class="tag">Semi-annual</span>
+
+              <div>
+                <h4 class="fin-title">
+                  Semi-Annual Accounts 2026
+                </h4>
+                <p class="fin-period">01.01 – 30.06.2026</p>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  class="button-link"
+                  data-library="fundI"
+                  data-file="Fund_I_Semi-annual_2026.pdf"
+                  href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open document ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="fin-card">
+              <span class="tag">Annual</span>
+
+              <div>
+                <h4 class="fin-title">
+                  Financial Statements 2025
+                </h4>
+                <p class="fin-period">01.01 – 31.12.2025</p>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  class="button-link"
+                  data-library="fundI"
+                  data-file="Fund_I_Financial_Statements_2025.pdf"
+                  href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open document ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="fin-card">
+              <span class="tag">Semi-annual</span>
+
+              <div>
+                <h4 class="fin-title">
+                  Semi-Annual Accounts 2025
+                </h4>
+                <p class="fin-period">01.01 – 30.06.2025</p>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  class="button-link"
+                  data-library="fundI"
+                  data-file="Fund_I_Semi-annual_2025.pdf"
+                  href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open document ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="fin-card">
+              <span class="tag">Annual</span>
+
+              <div>
+                <h4 class="fin-title">
+                  Financial Statements 2024
+                </h4>
+                <p class="fin-period">01.01 – 31.12.2024</p>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  class="button-link"
+                  data-library="fundI"
+                  data-file="Fund_I_Financial_Statements_2024.pdf"
+                  href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open document ↗
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="financials-spv" data-fund-section="spv">
+          <h3 class="fund-heading">
+            SPV — Envision SPV I AS
+          </h3>
+
+          <p class="empty-state">
+            Financial statements will be listed here once published.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-gap" aria-labelledby="taxable-title">
+        <div class="section-header">
+          <h2 id="taxable-title" class="section-title">
+            Taxable Value Per Share
+          </h2>
+
+          <p class="section-count">
+            Annual figures &middot; NOK
+          </p>
+        </div>
+
+        <div id="taxable-fundI" data-fund-section="fundI">
+          <h3 class="fund-heading">
+            Fund I — NRP Green Transition I AS
+          </h3>
+
+          <div class="fin-grid">
+            <article class="fin-card">
+              <span class="tag">Tax values</span>
+
+              <div>
+                <h4 class="fin-title">
+                  Taxable Value Per Share 2023–2025
+                </h4>
+                <p class="fin-period">2026 value not yet available</p>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  class="button-link"
+                  data-library="fundI"
+                  data-file="Fund_I_Taxable_Value_Per_Share.pdf"
+                  href="https://envisiontechnorge.sharepoint.com/sites/EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open document ↗
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="taxable-spv" data-fund-section="spv">
+          <h3 class="fund-heading">
+            SPV — Envision SPV I AS
+          </h3>
+
+          <p class="empty-state">
+            Taxable values will be listed here once published.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-gap" aria-labelledby="qa-title">
+        <div class="section-header">
+          <h2 id="qa-title" class="section-title">
+            Investor Q&amp;A
+          </h2>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-header">
+            <h3>Send a question</h3>
+
+            <p>
+              Contact Charmaine Lee and the investor relations
+              team about your investment or portal access.
+            </p>
+          </div>
+
+          <div id="qa-form-wrap" class="qa-body">
+            <form
+              id="qa-form"
+              action="https://formspree.io/f/mdarlgvo"
+              method="POST"
+            >
+              <input
+                id="qa-subject-field"
+                type="hidden"
+                name="_subject"
+                value="EnvisionTech Investor Q&A"
+              >
+
+              <div class="form-grid">
+                <div class="form-row">
+                  <label for="qa-name">Full name</label>
+                  <input
+                    id="qa-name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    maxlength="150"
+                    required
+                  >
+                </div>
+
+                <div class="form-row">
+                  <label for="qa-email">Email address</label>
+                  <input
+                    id="qa-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required
+                  >
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-row">
+                  <label for="qa-fund">Fund</label>
+
+                  <select id="qa-fund" name="fund" required>
+                    <option value="">Select a fund</option>
+                    <option value="Fund I">Fund I</option>
+                    <option value="SPV">SPV</option>
+                    <option value="Both funds">Both funds</option>
+                    <option value="General enquiry">
+                      General enquiry
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label for="qa-topic">Topic</label>
+
+                  <select id="qa-topic" name="topic" required>
+                    <option value="">Select a topic</option>
+                    <option value="Portal access">Portal access</option>
+                    <option value="Financial performance">
+                      Financial performance
+                    </option>
+                    <option value="Portfolio update">
+                      Portfolio update
+                    </option>
+                    <option value="Strategic direction">
+                      Strategic direction
+                    </option>
+                    <option value="Fund terms">Fund terms</option>
+                    <option value="Specific quarterly report">
+                      Specific quarterly report
+                    </option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="qa-message">Your question</label>
+
+                <textarea
+                  id="qa-message"
+                  name="message"
+                  maxlength="10000"
+                  placeholder="Write your question here."
+                  required
+                ></textarea>
+              </div>
+
+              <p
+                id="form-error"
+                class="form-error"
+                role="alert"
+                hidden
+              ></p>
+
+              <div class="form-footer">
+                <p class="form-note">
+                  This form uses Formspree to process your enquiry.
+                  Do not include passwords, verification codes,
+                  or sensitive identity documents.
+                </p>
+
+                <button
+                  id="submit-btn"
+                  class="submit-button"
+                  type="submit"
+                >
+                  Send question
+                </button>
+              </div>
+            </form>
+
+            <p class="helper contact-note">
+              You can also email
+              <a href="mailto:charmaine@envisiontech.no">
+                charmaine@envisiontech.no
+              </a>.
+            </p>
+          </div>
+
+          <div
+            id="qa-success"
+            class="qa-success"
+            role="status"
+            tabindex="-1"
+            hidden
+          >
+            <h3>Question submitted</h3>
+
+            <p>
+              Your enquiry has been submitted successfully.
+              The investor relations team can reply using
+              the email address you provided.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-wrap">
+      <div class="footer">
+        <p class="footer-brand">Envision<em>Tech</em></p>
+
+        <div class="footer-details">
+          <p>Munkedamsveien 53B, 0250 Oslo, Norway</p>
+
+          <p>
+            Investor relations:
+            <a href="mailto:charmaine@envisiontech.no">
+              charmaine@envisiontech.no
+            </a>
+          </p>
+
+          <p>
+            © <span id="copyright-year">2026</span>
+            EnvisionTech AS
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+      The shared entry password is a presentation-only gate.
+      It is visible in this public source and can be bypassed.
+      SharePoint independently enforces document permissions.
+
+      No investor mailing lists or confidential financial
+      figures are included in this file.
+    */
+
+    const PORTAL_ENTRY_PASSWORD = "envision123";
+
+    const entryForm = document.getElementById("entry-form");
+    const entryScreen = document.getElementById("entry-screen");
+    const portalContent = document.getElementById("portal-content");
+    const entryPassword = document.getElementById("entry-password");
+    const entryError = document.getElementById("entry-error");
+    const mainContent = document.getElementById("main-content");
+
+    entryPassword.addEventListener("input", () => {
+      entryPassword.removeAttribute("aria-invalid");
+      entryError.hidden = true;
+      entryError.textContent = "";
+    });
+
+    entryForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!entryForm.reportValidity()) {
+        return;
+      }
+
+      if (entryPassword.value !== PORTAL_ENTRY_PASSWORD) {
+        entryPassword.setAttribute("aria-invalid", "true");
+        entryError.textContent =
+          "Incorrect portal password. Please try again.";
+        entryError.hidden = false;
+        entryPassword.focus();
+        entryPassword.select();
+        return;
+      }
+
+      entryPassword.value = "";
+      entryError.hidden = true;
+      entryError.textContent = "";
+      entryPassword.removeAttribute("aria-invalid");
+
+      portalContent.hidden = false;
+      portalContent.removeAttribute("inert");
+      entryScreen.hidden = true;
+
+      window.scrollTo(0, 0);
+      mainContent.focus({ preventScroll: true });
+    });
+
+    document.getElementById("exit-portal").addEventListener(
+      "click",
+      () => {
+        /*
+          This returns to the entry screen.
+          It does not sign the visitor out of Microsoft.
+        */
+        portalContent.hidden = true;
+        portalContent.setAttribute("inert", "");
+        entryScreen.hidden = false;
+
+        entryForm.reset();
+        entryPassword.removeAttribute("aria-invalid");
+        entryError.hidden = true;
+        entryError.textContent = "";
+
+        window.scrollTo(0, 0);
+        entryPassword.focus({ preventScroll: true });
+      }
+    );
+
+    const LIBRARIES = Object.freeze({
+      fundI:
+        "https://envisiontechnorge.sharepoint.com/sites/" +
+        "EnvisionTechInvestorPortal/FundI/Forms/AllItems.aspx",
+
+      spv:
+        "https://envisiontechnorge.sharepoint.com/sites/" +
+        "EnvisionTechInvestorPortal/SPV/Forms/AllItems.aspx"
+    });
+
+    /*
+      Direct links to individual files.
+      Each report below names its PDF exactly as it appears in
+      SharePoint; the link opens that file in the library viewer.
+    */
+    const SITE_PATH = "/sites/EnvisionTechInvestorPortal";
+    const LIBRARY_FOLDERS = Object.freeze({ fundI: "FundI", spv: "SPV" });
+
+    function fileUrl(fund, filename) {
+      const folder = SITE_PATH + "/" + LIBRARY_FOLDERS[fund];
+      return LIBRARIES[fund] +
+        "?id=" + encodeURIComponent(folder + "/" + filename) +
+        "&parent=" + encodeURIComponent(folder);
+    }
+
+    const FUND_LABELS = Object.freeze({
+      fundI: "Fund I",
+      spv: "SPV"
+    });
+
+    /*
+      Listings are carried over from the supplied draft.
+      Confirm the documents exist before announcing the portal.
+
+      By default, buttons open the relevant library.
+      To link directly to a report, add a "url" property
+      containing its full restricted SharePoint HTTPS address.
+    */
+
+    const reports = [
+      {
+        fund: "fundI",
+        year: "2026",
+        quarter: "Q3 2026",
+        period: "Jul – Sep 2026",
+        file: "NRP Green Transition I AS_Investor Report (Q3-2026).pdf"
+      },
+      {
+        fund: "spv",
+        year: "2026",
+        quarter: "Q3 2026",
+        period: "Jul – Sep 2026",
+        file: "Envision SPV I AS_Investor Report (Q3-2026).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2026",
+        quarter: "Q2 2026",
+        period: "Apr – Jun 2026",
+        file: "NRP Green Transition I AS_Investor Report (Q2-2026).pdf"
+      },
+      {
+        fund: "spv",
+        year: "2026",
+        quarter: "Q2 2026",
+        period: "Apr – Jun 2026",
+        file: "Envision SPV I AS_Investor Report (Q2-2026).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2026",
+        quarter: "Q1 2026",
+        period: "Jan – Mar 2026",
+        file: "NRP Green Transition I AS_Investor Report (Q1-2026).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2025",
+        quarter: "Q4 2025",
+        period: "Oct – Dec 2025",
+        file: "NRP Green Transition I AS_Investor Report (Q4-2025).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2025",
+        quarter: "Q3 2025",
+        period: "Jul – Sep 2025",
+        file: "NRP Green Transition I AS_Investor Report (Q3-2025).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2025",
+        quarter: "Q2 2025",
+        period: "Apr – Jun 2025",
+        file: "NRP Green Transition I AS_Investor Report (Q2-2025).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2025",
+        quarter: "Q1 2025",
+        period: "Jan – Mar 2025",
+        file: "NRP Green Transition I AS_Investor Report (Q1-2025).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2024",
+        quarter: "Q4 2024",
+        period: "Oct – Dec 2024",
+        file: "NRP Green Transition I AS_Investor Report (Q4-2024).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2024",
+        quarter: "Q3 2024",
+        period: "Jul – Sep 2024",
+        file: "NRP Green Transition I AS_Investor Report (Q3-2024).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2024",
+        quarter: "Q2 2024",
+        period: "Apr – Jun 2024",
+        file: "NRP Green Transition I AS_Investor Report (Q2-2024).pdf"
+      },
+      {
+        fund: "fundI",
+        year: "2024",
+        quarter: "Q1 2024",
+        period: "Jan – Mar 2024",
+        file: "NRP Green Transition I AS_Investor Report (Q1-2024).pdf"
+      }
+    ];
+
+    let currentFund = "all";
+    let currentYear = "all";
+
+    function createElement(tag, className, text) {
+      const element = document.createElement(tag);
+
+      if (className) {
+        element.className = className;
+      }
+
+      if (text !== undefined) {
+        element.textContent = text;
+      }
+
+      return element;
+    }
+
+    function getReportDestination(report) {
+      const fallback = LIBRARIES[report.fund];
+
+      if (report.file) {
+        return { href: fileUrl(report.fund, report.file), direct: true };
+      }
+
+      if (!report.url) {
+        return { href: fallback, direct: false };
+      }
+
+      try {
+        const url = new URL(report.url);
+        const trustedHost = new URL(fallback).hostname;
+
+        if (
+          url.protocol === "https:" &&
+          url.hostname === trustedHost &&
+          !url.username &&
+          !url.password
+        ) {
+          return { href: url.href, direct: true };
+        }
+      } catch {
+        // Fall back to the known library.
+      }
+
+      return { href: fallback, direct: false };
+    }
+
+    function createReportCard(report) {
+      const fundLabel = FUND_LABELS[report.fund];
+      const destination = getReportDestination(report);
+
+      const article = createElement("article", "report-card");
+      const top = createElement("div", "card-top");
+
+      top.append(
+        createElement("span", "tag", fundLabel),
+        createElement("span", "report-period", "Quarterly report")
+      );
+
+      const headingBlock = createElement("div");
+
+      headingBlock.append(
+        createElement("h3", "report-quarter", report.quarter),
+        createElement("p", "report-period", report.period)
+      );
+
+      const description = createElement(
+        "p",
+        "report-desc",
+        destination.direct
+          ? "Open this report in SharePoint. " +
+            "Authorised access is required."
+          : "Find the " + report.quarter +
+            " report in the " + fundLabel +
+            " SharePoint library."
+      );
+
+      const footer = createElement("div", "card-footer");
+
+      const link = createElement(
+        "a",
+        "button-link",
+        destination.direct
+          ? "Open report in SharePoint ↗"
+          : "Open " + fundLabel + " library ↗"
+      );
+
+      link.href = destination.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      link.setAttribute(
+        "aria-label",
+        destination.direct
+          ? "Open " + fundLabel + " " +
+            report.quarter + " report in a new tab"
+          : "Find " + fundLabel + " " +
+            report.quarter +
+            " in the SharePoint library, opens in a new tab"
+      );
+
+      footer.append(link);
+      article.append(top, headingBlock, description, footer);
+
+      return article;
+    }
+
+    function renderReports() {
+      const grid = document.getElementById("reports-grid");
+      const count = document.getElementById("report-section-count");
+
+      const filtered = reports.filter(report => {
+        const matchesFund =
+          currentFund === "all" ||
+          report.fund === currentFund;
+
+        const matchesYear =
+          currentYear === "all" ||
+          report.year === currentYear;
+
+        return matchesFund && matchesYear;
+      });
+
+      grid.replaceChildren();
+
+      count.textContent =
+        filtered.length +
+        " report listing" +
+        (filtered.length === 1 ? "" : "s");
+
+      if (filtered.length === 0) {
+        grid.append(
+          createElement(
+            "p",
+            "empty-state",
+            "No reports are listed for this selection."
+          )
+        );
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      filtered.forEach(report => {
+        fragment.append(createReportCard(report));
+      });
+
+      grid.append(fragment);
+    }
+
+    function updateFundSections() {
+      document.querySelectorAll(
+        "[data-fund-section]"
+      ).forEach(section => {
+        section.hidden =
+          currentFund !== "all" &&
+          section.dataset.fundSection !== currentFund;
+      });
+    }
+
+    function updatePressedState(container, selectedButton) {
+      container.querySelectorAll("button").forEach(button => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button === selectedButton)
+        );
+      });
+    }
+
+    const fundTabs = document.getElementById("fund-tabs");
+
+    fundTabs.addEventListener("click", event => {
+      const button = event.target.closest("button[data-fund]");
+
+      if (!button || !fundTabs.contains(button)) {
+        return;
+      }
+
+      currentFund = button.dataset.fund;
+
+      updatePressedState(fundTabs, button);
+      updateFundSections();
+      renderReports();
+    });
+
+    const yearTabs = document.getElementById("year-tabs");
+
+    yearTabs.addEventListener("click", event => {
+      const button = event.target.closest("button[data-year]");
+
+      if (!button || !yearTabs.contains(button)) {
+        return;
+      }
+
+      currentYear = button.dataset.year;
+
+      updatePressedState(yearTabs, button);
+      renderReports();
+    });
+
+    document.querySelectorAll(
+      "a[data-library]"
+    ).forEach(link => {
+      const destination = link.dataset.file
+        ? fileUrl(link.dataset.library, link.dataset.file)
+        : LIBRARIES[link.dataset.library];
+
+      if (destination) {
+        link.href = destination;
+      }
+    });
+
+    document.getElementById(
+      "copyright-year"
+    ).textContent = String(new Date().getFullYear());
+
+    /*
+      Confirm the endpoint and recipient configuration
+      in the Formspree dashboard before publication.
+    */
+
+    const qaForm = document.getElementById("qa-form");
+    const submitButton = document.getElementById("submit-btn");
+    const formError = document.getElementById("form-error");
+    const successPanel = document.getElementById("qa-success");
+    const formWrap = document.getElementById("qa-form-wrap");
+
+    let submitting = false;
+
+    qaForm.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      if (submitting || !qaForm.reportValidity()) {
+        return;
+      }
+
+      const nameInput = document.getElementById("qa-name");
+      const emailInput = document.getElementById("qa-email");
+      const messageInput = document.getElementById("qa-message");
+      const topicInput = document.getElementById("qa-topic");
+
+      nameInput.value = nameInput.value.trim();
+      emailInput.value = emailInput.value.trim();
+      messageInput.value = messageInput.value.trim();
+
+      formError.hidden = true;
+      formError.textContent = "";
+
+      if (!qaForm.reportValidity()) {
+        return;
+      }
+
+      document.getElementById("qa-subject-field").value =
+        "[Investor Q&A] " +
+        topicInput.value +
+        " — " +
+        nameInput.value;
+
+      submitting = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending…";
+      qaForm.setAttribute("aria-busy", "true");
+
+      const controller = new AbortController();
+
+      const timeout = setTimeout(() => {
+        controller.abort();
+      }, 30000);
+
+      try {
+        const response = await fetch(qaForm.action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: new FormData(qaForm),
+          signal: controller.signal
+        });
+
+        let data = null;
+
+        try {
+          data = await response.json();
+        } catch {
+          // The response may not contain JSON.
+        }
+
+        if (!response.ok) {
+          let message = "";
+
+          if (response.status === 429) {
+            message =
+              "Too many submissions. Please wait " +
+              "and try again later.";
+          } else if (
+            data &&
+            Array.isArray(data.errors) &&
+            data.errors.length > 0
+          ) {
+            message = data.errors
+              .map(error => error.message)
+              .filter(Boolean)
+              .join(" ");
+          }
+
+          throw new Error(
+            message ||
+            "The form could not accept your enquiry. " +
+            "Please try again or email " +
+            "charmaine@envisiontech.no."
+          );
+        }
+
+        qaForm.reset();
+        formWrap.hidden = true;
+        successPanel.hidden = false;
+        successPanel.focus();
+      } catch (error) {
+        if (error.name === "AbortError") {
+          formError.textContent =
+            "The request timed out. We could not confirm " +
+            "whether it was received. Please contact " +
+            "charmaine@envisiontech.no if needed.";
+        } else if (error instanceof TypeError) {
+          formError.textContent =
+            "We could not confirm submission. " +
+            "Check your connection or email " +
+            "charmaine@envisiontech.no.";
+        } else {
+          formError.textContent =
+            error.message ||
+            "Something went wrong. Please email " +
+            "charmaine@envisiontech.no.";
+        }
+
+        formError.hidden = false;
+      } finally {
+        clearTimeout(timeout);
+        submitting = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "Send question";
+        qaForm.removeAttribute("aria-busy");
+      }
+    });
+
+    updateFundSections();
+    renderReports();
+  </script>
+</body>
+</html>
